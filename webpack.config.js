@@ -15,6 +15,7 @@ delete deps['@emotion/react'];
 delete deps['@emotion/styled'];
 delete deps['@mui/material'];
 delete deps['@mui/styles'];
+delete deps['@mui/icons-material'];
 
 module.exports = {
   entry: './src/bootstrap.ts',
@@ -58,11 +59,14 @@ module.exports = {
   },
   plugins: [
     new ModuleFederationPlugin({
-      name: 'template',
+      name: 'npwd_qb_garage',
       filename: 'remoteEntry.js',
       exposes: {
         './config': './npwd.config',
       },
+      remotes: {
+        "layout": "layout@http://localhost:port/remoteEntry.js"
+      }, 
       shared: {
         ...deps,
         react: {

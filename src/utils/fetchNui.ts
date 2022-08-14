@@ -19,10 +19,9 @@ async function fetchNui<T = any, D = any>(eventName: string, data?: D, mockResp?
 	if (isEnvBrowser() && mockResp) {
 		return mockResp;
 	}
-	
-	const resourceName = (window as any).GetParentResourceName
-		? (window as any).GetParentResourceName()
-		: 'npwd';
+
+
+	const resourceName = "npwd_qb_garage";
 	
 	const resp = await fetch(`https://${resourceName}/${eventName}`, options);
 	
