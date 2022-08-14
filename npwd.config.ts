@@ -4,7 +4,7 @@ import { theme } from './src/app.theme';
 
 const defaultLanguage = 'en';
 const localizedAppName = {
-  en: 'APP_NAME',
+  en: 'Garage',
 };
 
 interface Settings {
@@ -16,7 +16,7 @@ export default (settings: Settings) => ({
   nameLocale: localizedAppName[settings?.language ?? defaultLanguage],
   color: '#fff',
   backgroundColor: '#333',
-  path: '/weather',
+  path: '/garage',
   icon: AppIcon,
   app: App,
   theme: theme,
