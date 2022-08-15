@@ -1,23 +1,16 @@
 import App from './src/App';
-import { AppIcon } from './icon';
+import { GarageIcon } from './icon';
 import { theme } from './src/app.theme';
 
-const defaultLanguage = 'en';
-const localizedAppName = {
-  en: 'Garage',
-};
-
-interface Settings {
-  language: 'en';
-}
-
-export default (settings: Settings) => ({
+export const externalAppConfig = () => ({
   id: 'garage',
-  nameLocale: localizedAppName[settings?.language ?? defaultLanguage],
+  nameLocale: 'Garage',
   color: '#fff',
   backgroundColor: '#333',
   path: '/garage',
-  icon: AppIcon,
+  icon: GarageIcon,
   app: App,
   theme: theme,
 });
+
+export default externalAppConfig;
