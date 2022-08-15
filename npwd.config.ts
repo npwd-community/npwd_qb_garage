@@ -12,7 +12,7 @@ interface Settings {
 }
 
 export default (settings: Settings) => ({
-  id: 'APP_NAME',
+  id: 'garage',
   nameLocale: localizedAppName[settings?.language ?? defaultLanguage],
   color: '#fff',
   backgroundColor: '#333',

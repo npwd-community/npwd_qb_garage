@@ -70,7 +70,7 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
       {Object.keys(vehicles).map((key) => (
         <List
           subheader={
-            <ListSubheader sx={{ cursor: 'pointer' }} onClick={() => expandItem(key)}>
+            <ListSubheader sx={{ cursor: 'pointer', position: "static" }} onClick={() => expandItem(key)}>
               {key.toUpperCase()}
             </ListSubheader>
           }

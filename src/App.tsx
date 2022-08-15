@@ -19,6 +19,7 @@ const Container = styled.div<{ isDarkMode: any }>`
   display: flex;
   box-sizing: border-box;
   flex-direction: column;
+  overflow: auto;
   max-height: 100%;
   background-color: #fafafa;
   ${({ isDarkMode }) =>
