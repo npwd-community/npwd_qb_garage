@@ -50,7 +50,7 @@ const VehicleDetails = ({ veh }: { veh: GarageItem }) => {
               <LocalGasStationIcon />
             </Tooltip>
           </ListItemIcon>
-          <ListItemText primary={<Typography>{Math.ceil(veh.fuel}%</Typography>} />
+          <ListItemText primary={<Typography>{Math.ceil(veh.fuel)}%</Typography>} />
         </ListItem>
         <ListItem disablePadding sx={{ borderBottom: '1px solid white', mb: '8px' }}>
           <ListItemIcon sx={{ ml: '5px', mr: '20px', minWidth: '25px' }}>
