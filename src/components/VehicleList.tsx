@@ -10,7 +10,7 @@ import {
   AccordionDetails,
   Stack,
 } from '@mui/material';
-import { green, orange, red } from '@mui/material/colors';
+import { green, grey, orange, red } from '@mui/material/colors';
 import React, { useState } from 'react';
 import { GarageItem } from '../types/garage';
 import FlightIcon from '@mui/icons-material/Flight';
@@ -33,6 +33,8 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
         out: orange[500],
         garaged: green[500],
         impounded: red[500],
+        seized: red[500],
+        unknown: grey[500],
       },
     },
     aircraft: {
@@ -41,6 +43,8 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
         out: orange[500],
         garaged: green[500],
         impounded: red[500],
+        seized: red[500],
+        unknown: grey[500],
       },
     },
     boat: {
@@ -49,6 +53,8 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
         out: orange[500],
         garaged: green[500],
         impounded: red[500],
+        seized: red[500],
+        unknown: grey[500],
       },
     },
     bike: {
@@ -57,6 +63,8 @@ export const VehicleList: React.FC<VehicleListProps> = ({ vehicles, isDarkMode }
         out: orange[500],
         garaged: green[500],
         impounded: red[500],
+        seized: red[500],
+        unknown: grey[500],
       },
     },
   };

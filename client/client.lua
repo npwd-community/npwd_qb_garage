@@ -36,6 +36,10 @@ RegisterNUICallback("npwd:qb-garage:getVehicles", function(_, cb)
 				v.state = "garaged"
 			elseif v.state == 2 then
 				v.state = "impounded"
+			-- elseif v.state == 3 then -- add new state for seized vehicles
+			-- 	v.state = "seized"
+			else 
+				v.state = "unknown"
 			end
 			if (QBCore.Shared.Vehicles[vehicleModel] ~= nil) and (Garages[v.garage] ~= nil) then
 				v.garage = Garages[v.garage].label
