@@ -62,7 +62,13 @@ const VehicleDetails = ({ veh }: { veh: GarageItem }) => {
         </ListItem>
       </List>
 
-      <Button color="primary" variant="contained" disabled={veh.state !== 'out'} onClick={() => handleTrackVehicle(veh.plate)}>
+      <Button
+        color="primary"
+        variant="contained"
+        disabled={veh.state !== 'out'}
+        onClick={() => handleTrackVehicle(veh.plate)}
+        style={{ color: '#FFFFFF', backgroundColor: '#212121' }}
+      >
         Track
       </Button>
     </>
