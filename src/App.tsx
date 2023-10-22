@@ -9,6 +9,7 @@ import { IconButton, Theme, StyledEngineProvider, ThemeProvider, Typography } fr
 import { ArrowBack } from '@mui/icons-material';
 import { GarageItem } from './types/garage';
 import { MockGarage } from './utils/constants';
+import { buildRespObj } from './utils/misc';
 import { VehicleList } from './components/VehicleList';
 import fetchNui from './utils/fetchNui';
 import { ServerPromiseResp } from './types/common';
@@ -42,8 +43,12 @@ const App = (props: AppProps) => {
   const isDarkMode = props.theme.palette.mode === 'dark';
 
   useEffect(() => {
-    fetchNui<ServerPromiseResp<GarageItem[]>>('npwd:qb-garage:getVehicles').then((resp) => {
-      setVehicles(resp.data);
+    fetchNui<ServerPromiseResp<GarageItem[]>>(
+      'npwd:qb-garage:getVehicles',
+      null,
+      buildRespObj(MockGarage)
+      ).then((resp) => {
+        setVehicles(resp.data);
     });
   }, []);
 
