@@ -12,7 +12,6 @@
     "@types/react-dom": "^17.0.11",
     "@types/react-router": "^5.1.18",
     "@types/react-router-dom": "^5.3.3",
-    "@types/styled-components": "^5.1.23",
     "@types/webpack-env": "^1.16.3",
     "@vitejs/plugin-react": "^4.2.1",
     "add": "^2.0.6",
@@ -52,7 +51,6 @@
     "react-hot-loader": "^4.13.0",
     "react-router-dom": "^5.3.0",
     "recoil": "^0.7.7",
-    "styled-components": "^5.3.3",
     "vite-plugin-top-level-await": "^1.4.1"
   }
 }

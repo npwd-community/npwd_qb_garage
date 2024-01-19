@@ -1,12 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import '../npwd.config';
-
 import {BrowserRouter} from 'react-router-dom';
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 import App from './App';
 import image from './bg.png';
-import {NuiProvider} from 'react-fivem-hooks';
 import {RecoilRoot} from 'recoil';
 import {IPhoneSettings} from '@project-error/npwd-types';
 import i18next from 'i18next';

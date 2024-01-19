@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import {useHistory} from 'react-router-dom';
-import styled from 'styled-components';
+import styled from "@emotion/styled";
 import {Header} from './styles/header.styles';
 import {IPhoneSettings} from '@project-error/npwd-types';
 import {i18n} from 'i18next';
