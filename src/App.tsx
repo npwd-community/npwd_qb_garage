@@ -1,93 +1,94 @@
-import React, { useEffect, useState } from 'react';
-import { NuiProvider } from 'react-fivem-hooks';
-import { useHistory } from 'react-router-dom';
+import React, {useEffect, useState} from 'react';
+import {useHistory} from 'react-router-dom';
 import styled from 'styled-components';
-import { Header } from './styles/header.styles';
-import { IPhoneSettings } from '@project-error/npwd-types';
-import { i18n } from 'i18next';
-import { IconButton, Theme, StyledEngineProvider, ThemeProvider, Typography } from '@mui/material';
-import { ArrowBack } from '@mui/icons-material';
-import { GarageItem } from './types/garage';
-import { MockGarage } from './utils/constants';
-import { buildRespObj } from './utils/misc';
-import { VehicleList } from './components/VehicleList';
+import {Header} from './styles/header.styles';
+import {IPhoneSettings} from '@project-error/npwd-types';
+import {i18n} from 'i18next';
+import {IconButton, Theme, StyledEngineProvider, Typography} from '@mui/material';
+import {ArrowBack} from '@mui/icons-material';
+import {GarageItem} from './types/garage';
+import {MockGarage} from './utils/constants';
+import {buildRespObj} from './utils/misc';
+import {VehicleList} from './components/VehicleList';
 import fetchNui from './utils/fetchNui';
-import { ServerPromiseResp } from './types/common';
+import {ServerPromiseResp} from './types/common';
+import {RecoilEnv, RecoilRoot} from "recoil";
+
+RecoilEnv.RECOIL_DUPLICATE_ATOM_KEY_CHECKING_ENABLED = false;
 
 const Container = styled.div<{ isDarkMode: any }>`
-  flex: 1;
-  padding: 1.5rem;
-  display: flex;
-  box-sizing: border-box;
-  flex-direction: column;
-  overflow: auto;
-  max-height: 100%;
-  background-color: #fafafa;
-  ${({ isDarkMode }) =>
-    isDarkMode &&
-    `
+    flex: 1;
+    padding: 1.5rem;
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: column;
+    overflow: auto;
+    max-height: 100%;
+    background-color: #fafafa;
+    ${({isDarkMode}) =>
+            isDarkMode &&
+            `
     background-color: #212121;
   `}
 `;
+
 interface AppProps {
-  theme: Theme;
-  i18n: i18n;
-  settings: IPhoneSettings;
+    theme: Theme;
+    i18n: i18n;
+    settings: IPhoneSettings;
 }
 
 const App = (props: AppProps) => {
-  const history = useHistory();
-  const [vehicles, setVehicles] = useState<GarageItem[] | undefined>([]);
-  const [mappedVeh, setMappedVeh] = useState<any>(null);
+    const history = useHistory();
+    const [vehicles, setVehicles] = useState<GarageItem[] | undefined>([]);
+    const [mappedVeh, setMappedVeh] = useState<any>(null);
 
-  const isDarkMode = props.theme.palette.mode === 'dark';
+    const isDarkMode = 'dark'
 
-  useEffect(() => {
-    fetchNui<ServerPromiseResp<GarageItem[]>>(
-      'npwd:qb-garage:getVehicles',
-      null,
-      buildRespObj(MockGarage)
-      ).then((resp) => {
-        setVehicles(resp.data);
-    });
-  }, []);
+    useEffect(() => {
+        fetchNui<ServerPromiseResp<GarageItem[]>>(
+            'npwd:qb-garage:getVehicles',
+            null,
+            buildRespObj(MockGarage)
+        ).then((resp) => {
+            setVehicles(resp.data);
+        });
+    }, []);
 
 
-  useEffect(() => {
-    if (vehicles) {
-      const mappedVehicles = vehicles?.reduce((vehs: any, vehicle: any) => {
-        if (!vehs[vehicle.type]) vehs[vehicle.type] = [];
-        vehs[vehicle.type].push(vehicle);
-        return vehs;
-      }, {});
+    useEffect(() => {
+        if (vehicles) {
+            const mappedVehicles = vehicles?.reduce((vehs: any, vehicle: any) => {
+                if (!vehs[vehicle.type]) vehs[vehicle.type] = [];
+                vehs[vehicle.type].push(vehicle);
+                return vehs;
+            }, {});
 
-      setMappedVeh(mappedVehicles);
-    }
-  }, [vehicles]);
+            setMappedVeh(mappedVehicles);
+        }
+    }, [vehicles]);
 
-  return (
-    <StyledEngineProvider injectFirst>
-      <ThemeProvider theme={props.theme}>
-        <Container isDarkMode={isDarkMode}>
-          <Header>
-            <IconButton color="primary" onClick={() => history.goBack()}>
-              <ArrowBack />
-            </IconButton>
-            <Typography fontSize={24} color="primary" fontWeight="bold">
-              Garage
-            </Typography>
-          </Header>
-          {mappedVeh && <VehicleList isDarkMode={isDarkMode} vehicles={mappedVeh} />}
-        </Container>
-      </ThemeProvider>
-    </StyledEngineProvider>
-  );
+    return (
+        <StyledEngineProvider injectFirst>
+            <Container isDarkMode={isDarkMode}>
+                <Header>
+                    <IconButton color="primary" onClick={() => history.goBack()}>
+                        <ArrowBack/>
+                    </IconButton>
+                    <Typography fontSize={24} color="primary" fontWeight="bold">
+                        Garage
+                    </Typography>
+                </Header>
+                {mappedVeh && <VehicleList isDarkMode={true} vehicles={mappedVeh}/>}
+            </Container>
+        </StyledEngineProvider>
+    );
 };
 
 const WithProviders: React.FC<AppProps> = (props) => (
-  <NuiProvider>
-    <App {...props} />
-  </NuiProvider>
+    <RecoilRoot override key="npwd_qb_garage">
+        <App {...props} />
+    </RecoilRoot>
 );
 
 export default WithProviders;
